@@ -1,0 +1,1 @@
+# Application for fetching SpaceX launches details using GraphQL.
