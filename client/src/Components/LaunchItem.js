@@ -3,8 +3,8 @@ import classNames from 'classnames'
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom'
 
-function LaunchItem({launch : {flight_number, mission_name, launch_date_loc, launch_success}}) {
-    console.log(props.launch)
+function LaunchItem({launch : {flight_number, mission_name, launch_date_local, launch_success}}) {
+    console.log(launch_date_local)
     return (
         <div className="card card-body mb-3">
             <div className="row">
@@ -13,7 +13,9 @@ function LaunchItem({launch : {flight_number, mission_name, launch_date_loc, lau
                         'text-success' : true,
                         'text-danger' : !launch_success
                     })}>{mission_name}</span></h4>
-                    <p>Date : <Moment format="YYY-MM-DD HH:mm"> {launch_date_loc}</Moment></p>
+                    <p>
+                        Date: <Moment format="YYYY-MM-DD HH:mm">{launch_date_local}</Moment>
+                    </p>
                 </div>
                 <div className="col-md-3">
                     <Link to={`/launch/${flight_number}`} className="btn btn-secondary">Details</Link>

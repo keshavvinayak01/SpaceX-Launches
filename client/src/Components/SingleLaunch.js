@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Link } from 'react-router-dom'
+import Moment from 'react-moment'
 import classNames from 'classnames'
 
 const LAUNCH_QUERY = gql`
@@ -11,7 +12,7 @@ const LAUNCH_QUERY = gql`
             mission_name
             launch_year
             launch_success
-            launch_date_loc
+            launch_date_local
             rocket{
                 rocket_id
                 rocket_name
@@ -38,16 +39,15 @@ class SingleLaunch extends Component {
                                 flight_number,
                                 launch_year,
                                 launch_success,
-                                launch_date_loc,
+                                launch_date_local,
                                 rocket : {rocket_id, rocket_name, rocket_type
                             }} = data.launch;
 
                             return (<div>
                                 <h1 clasName="display-4 my-3">
-                                    <span className="text-dark">
                                         Mission : <span> { mission_name } </span>
-                                    </span>
                                 </h1>
+                                <br />
                                 <h4 className="mb-3">
                                     Launch Details
                                 </h4>
@@ -57,6 +57,10 @@ class SingleLaunch extends Component {
                                     </li>
                                     <li className="list-group-item">
                                         Launch Year : { launch_year }
+                                    </li>
+                                    <li className="list-group-item">
+                                        Launch Date Location : <Moment format="YYYY-MM-DD HH:mm">{ launch_date_local }
+                                        </Moment>
                                     </li>
                                     <li className="list-group-item">
                                         Launch Successful : <span className={classNames({
